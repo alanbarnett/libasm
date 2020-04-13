@@ -7,6 +7,7 @@ global _start				; Defining the entry point
 
 ; Load syscall into rax
 ; Parameter registers are rdi, rsi, rdx, rcx, r8, and r9
+; Floating point arguments are XMM0-XMM7
 ; Result comes back in the rax register
 
 section .text:
@@ -16,7 +17,7 @@ _start:						; ELF entry point
 	mov rsi, message		; param 2, buffer
 	; Apparently you NEED square brackets around this next variable
 	; only if it's declared with the .end section stuff commented out in data
-	; it's probably a different type of variable
+	; brackets kinda dereference a register
 	; mov rdx, [message_len]
 	mov rdx, message_len	; param 3, length of buffer
 	syscall					; syscall command runs the syscall (write)

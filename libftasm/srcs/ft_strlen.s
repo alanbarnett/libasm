@@ -20,15 +20,15 @@ ftasm_strlen:
 ;--/
 
 ;	Interesting way using repeated string operations
-	mov rcx, 0xffff	; initialize counter with max length
+	mov rcx, -1		; initialize counter with -1, so decrementing doesn't get
+					; to zero
 	mov rax, 0		; look for 0
 	cld				; clear the direction bit (tells the string to increment)
 					; I'm not sure if this is guaranteed
 	repne scasb		; repeats scanning a byte in rdi while the byte isn't equal
 					; to rax
 					; it increments rdi each time, while also decrementing rcx
-	mov rax, 0xffff	; move max into rax
+	mov rax, -2		; set up rax for subtraction to get actual value
 	sub rax, rcx	; subtract the value that was decremented
-	dec rax			; extra one for some reason
 
 	ret

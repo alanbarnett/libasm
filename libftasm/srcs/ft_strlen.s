@@ -19,6 +19,11 @@ ftasm_strlen:
 ;	mov rax, rcx	; move counter into return register
 ;--/
 
+	push rbp
+	mov rbp, rsp
+
+	push rdi		; save string's start
+
 ;	Interesting way using repeated string operations
 	mov rcx, -1		; initialize counter with -1, so decrementing doesn't get
 					; to zero
@@ -30,5 +35,9 @@ ftasm_strlen:
 					; it increments rdi each time, while also decrementing rcx
 	mov rax, -2		; set up rax for subtraction to get actual value
 	sub rax, rcx	; subtract the value that was decremented
+
+	pop rdi			; reset the string
+
+	pop rbp
 
 	ret

@@ -6,7 +6,7 @@
 #    By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/08 17:06:44 by alan              #+#    #+#              #
-#    Updated: 2020/04/12 17:55:43 by alan             ###   ########.fr        #
+#    Updated: 2020/05/04 06:53:52 by abarnett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ $(NAME): $(ASM_OBJS)
 	ranlib $(NAME)
 
 %.o: %.s Makefile
-	nasm -f elf64 $<
+	nasm -f $(BINARY_FMT) $<
 
 clean:
 	@- $(RM) $(ASM_OBJS)
